@@ -1,0 +1,6 @@
+  spring:
+    datasource:
+      driver-class-name: oracle.jdbc.OracleDriver
+      url: jdbc:oracle:thin:@oioproject_high?TNS_ADMIN=/oracleCloud/Wallet_oioproject
+      username: admin
+      password: '{cipher}ad0fb8bc0dc155d9db73453c97118e1285ab2e31663372dc1c46b751b56555f2'

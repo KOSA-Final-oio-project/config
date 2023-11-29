@@ -46,7 +46,7 @@ spring:
             - Method=GET,POST
           filters:
             - RemoveRequestHeader=Cookie
-            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+            - RewritePath=/content-service/(?<segment>.*), /$\{segment}
             
           # MEMBER SERVICE #
         - id: member-service

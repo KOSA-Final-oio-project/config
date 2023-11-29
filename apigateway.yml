@@ -11,6 +11,11 @@ eureka:
 spring:
   application:
     name: apigateway-service
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
   cloud:
     gateway:
       routes:
@@ -34,6 +39,15 @@ spring:
             - RemoveRequestHeader=Cookie
             - RewritePath=/content-service/(?<segment>.*), /$\{segment}
 
+        - id: content-service
+          uri: lb://CONTENT-SERVICE
+          predicates:
+            - Path=/content-service/actuator/**
+            - Method=GET,POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+            
           # MEMBER SERVICE #
         - id: member-service
           uri: lb://MEMBER-SERVICE
@@ -66,3 +80,9 @@ spring:
 
 test:
   word: hello
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: busrefresh

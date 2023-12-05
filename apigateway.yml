@@ -34,7 +34,7 @@ spring:
           uri: lb://CONTENT-SERVICE
           predicates:
             - Path=/content-service/**
-            - Method=GET
+            - Method=GET,POST,DELETE,PUT
           filters:
             - RemoveRequestHeader=Cookie
             - RewritePath=/content-service/(?<segment>.*), /$\{segment}
@@ -43,7 +43,7 @@ spring:
           uri: lb://CONTENT-SERVICE
           predicates:
             - Path=/content-service/actuator/**
-            - Method=GET,POST
+            - Method=GET,POST,DELETE,PUT
           filters:
             - RemoveRequestHeader=Cookie
             - RewritePath=/content-service/(?<segment>.*), /$\{segment}
